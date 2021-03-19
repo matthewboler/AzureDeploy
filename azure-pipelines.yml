@@ -20,6 +20,6 @@ steps:
     location: 'Australia East'
     templateLocation: 'URL of the file'
     csmFileLink: 'https://raw.githubusercontent.com/matthewboler/AzureDeploy/master/CreateWebApp/azuredeploy.json'
-    overrideParameters: '-projectName MB20210319a'
+    overrideParameters: '-projectName mb20210319a'
     deploymentMode: 'Incremental'
     deploymentName: 'DeployPipelineTemplate'
