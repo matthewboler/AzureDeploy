@@ -1,0 +1,15 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'windows-latest'
+
+steps:
+- task: AzureFileCopy@4
+  inputs:
+    SourcePath: 'templates'
+    azureSubscription: 'AzureDeployConn'
+    Destination: 'AzureBlob'
+    storage: 'mb20210319a4pg7nidrkd6fm'
+    ContainerName: 'projecttemplates'
+  name: AzureFileCopy
