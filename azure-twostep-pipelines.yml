@@ -12,3 +12,17 @@ steps:
     storage: 'mb20210319a4pg7nidrkd6fm'
     ContainerName: 'projecttemplates'
   name: AzureFileCopy
+
+  - task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'AzureDeployConn'
+    subscriptionId: '9245ca19-7afc-427d-b9fa-aad41676a94d'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'AzureRmPipeline-rg'
+    location: 'Australia East'
+    templateLocation: 'URL of the file'
+    csmFileLink: '$(AzureFileCopy.StorageContainerUri)CreateWebApp/azureDeploy.json$(AzureFileCopy.StorageContainerSasToken)'
+    csmParametersFileLink: '$(AzureFileCopy.StorageContainerUri)CreateWebApp/azureDeploy.parameters.json$(AzureFileCopy.StorageContainerSasToken)'
+    deploymentMode: 'Incremental'
+    deploymentName: 'deploy1'
