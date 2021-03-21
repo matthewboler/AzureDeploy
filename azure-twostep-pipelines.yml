@@ -21,6 +21,6 @@ steps:
     resourceGroupName: 'AzureRmPipeline-rg'
     location: 'Australia East'
     templateLocation: 'URL of the file'
-    csmFileLink: '$(AzureFileCopy.StorageContainerUri)CreateWebApp/azureDeploy.json$(AzureFileCopy.StorageContainerSasToken)'
+    csmFileLink: '$(AzureFileCopy.StorageContainerUri)CreateWebApp/azuredeploy2step.json$(AzureFileCopy.StorageContainerSasToken)'
     deploymentMode: 'Incremental'
     deploymentName: 'deploy1'
