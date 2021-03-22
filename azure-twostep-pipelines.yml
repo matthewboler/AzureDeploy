@@ -3,7 +3,12 @@ trigger:
 
 pool: TestPool
 
+  variables: 
+    - group: UAT
+
 steps:
+- script: echo $(parameterFileName) # uses macro syntax
+
 - task: AzureFileCopy@4
   inputs:
     SourcePath: 'CreateWebApp'
@@ -12,6 +17,7 @@ steps:
     storage: 'mb20210319a4pg7nidrkd6fm'
     ContainerName: 'projecttemplates'
   name: AzureFileCopy
+
 - task: AzureResourceManagerTemplateDeployment@3
   inputs:
     deploymentScope: 'Resource Group'
@@ -25,3 +31,4 @@ steps:
     overrideParameters: -storageName $(AzureFileCopy.StorageContainerUri) -storageSAS $(AzureFileCopy.StorageContainerSasToken)
     deploymentMode: 'Incremental'
     deploymentName: 'deploy1'
+  name: AzureResourceDeployment
