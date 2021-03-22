@@ -41,6 +41,9 @@ steps:
     scriptLocation: 'inlineScript'
     inlineScript: |
       $appId = (az ad app create --display-name AuthTest --homepage https://umb20210319webapp.azurewebsites.net --identifier-uris https://umb20210319webapp.azurewebsites.net --reply-urls https://umb20210319webapp.azurewebsites.net/.auth/login/aad/callback --query 'appId' -o tsv)
-      
+      az ad app permission add --id $appId --api 00000002-0000-0000-c000-000000000000 --api-permissions 311a71cc-e848-46a1-bdf8-97ff7156d8e6=Scope
+      $password = (head /dev/urandom | tr -dc [:alnum:] | fold -w 30 | head -n 1)
+      az ad app credential reset --id $appId --password $password -o none
+
       Write-Host "App ID: $appId"
     addSpnToEnvironment: true
