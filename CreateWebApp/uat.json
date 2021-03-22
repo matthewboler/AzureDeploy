@@ -4,9 +4,6 @@
   "parameters": {
     "environment": {
       "value": "u"
-    },
-    "serviceNameAbbreviation": {
-      "value": "email"
     }
 
   }
