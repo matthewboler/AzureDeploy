@@ -33,3 +33,13 @@ steps:
     deploymentMode: 'Incremental'
     deploymentName: 'deploy1'
   name: AzureResourceDeployment
+
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'AzureDeployConn'
+    scriptType: 'pscore'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+      $appId = (az ad app create --display-name AuthTest --homepage https://umb20210319webapp.azurewebsites.net --identifier-uris https://umb20210319webapp.azurewebsites.net --reply-urls https://umb20210319webapp.azurewebsites.net/.auth/login/aad/callback --query 'appId' -o tsv)
+      
+      Write-Host "App ID: $appId"
