@@ -3,7 +3,7 @@ trigger:
 
 pool: TestPool
 
-  variables: 
+variables: 
     - group: UAT
 
 steps:
