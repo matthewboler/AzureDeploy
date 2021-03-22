@@ -51,7 +51,7 @@
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "[concat(parameters('storageName'),'CreateWebApp\\azuredeploy.json',parameters('storageSAS'))]",
+          "uri": "[concat(parameters('storageName'),'CreateWebApp\\linkedStorageAccount.json',parameters('storageSAS'))]",
                     "contentVersion": "1.0.0.0"
         },
         "parameters": {
