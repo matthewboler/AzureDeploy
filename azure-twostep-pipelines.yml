@@ -28,6 +28,7 @@ steps:
     location: 'Australia East'
     templateLocation: 'URL of the file'
     csmFileLink: '$(AzureFileCopy.StorageContainerUri)CreateWebApp/azuredeploy2step.json$(AzureFileCopy.StorageContainerSasToken)'
+    csmParametersFileLink: '$(AzureFileCopy.StorageContainerUri)CreateWebApp/$(parameterFileName)$(AzureFileCopy.StorageContainerSasToken)'
     overrideParameters: -storageName $(AzureFileCopy.StorageContainerUri) -storageSAS $(AzureFileCopy.StorageContainerSasToken)
     deploymentMode: 'Incremental'
     deploymentName: 'deploy1'
