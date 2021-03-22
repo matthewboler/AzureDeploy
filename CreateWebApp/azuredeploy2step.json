@@ -4,7 +4,7 @@
   "parameters": {
     "projectName": {
       "type": "string",
-      "defaultValue": "tp20210322",
+      "defaultValue": "mb20210319",
       "minLength": 3,
       "maxLength": 11,
       "metadata": {
