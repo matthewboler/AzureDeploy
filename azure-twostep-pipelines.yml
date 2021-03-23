@@ -70,6 +70,7 @@ steps:
     scriptType: 'ps'
     scriptLocation: 'inlineScript'
     inlineScript: |
-          az login -u $(consentUser) -p $(consentPwd) --allow-no-subscriptions
           az config set extension.use_dynamic_install=yes_without_prompt
           az pipelines variable-group variable create --group-id 1 --name testvariable --value True --org https://dev.azure.com/matthewboler/ --project AzureDeploy
+          az login -u $(consentUser) -p $(consentPwd) --allow-no-subscriptions
+          
