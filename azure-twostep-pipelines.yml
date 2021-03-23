@@ -67,7 +67,7 @@ steps:
 - task: AzureCLI@2
   inputs:
     azureSubscription: 'AzureDeployConn'
-    scriptType: 'pscore'
+    scriptType: 'ps'
     scriptLocation: 'inlineScript'
     inlineScript: |
           az pipelines variable-group variable create --group-id 1 --name testvariable --value True
