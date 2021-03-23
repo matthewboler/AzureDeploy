@@ -63,4 +63,11 @@ steps:
       #az ad app permission grant --id b993ce7b-96cf-4639-9a24-1a4d0810de75 --api 00000002-0000-0000-c000-000000000000
 
       Write-Host "App ID: $appId"
-    
+
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'AzureDeployConn'
+    scriptType: 'pscore'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+          az pipelines variable-group variable create --group-id 1 --name testvariable --value True
