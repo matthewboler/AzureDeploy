@@ -71,4 +71,4 @@ steps:
     scriptLocation: 'inlineScript'
     inlineScript: |
           az config set extension.use_dynamic_install=yes_without_prompt
-          az pipelines variable-group variable create --group-id 1 --name testvariable --value True --org https://dev.azure.com/matthewboler/
+          az pipelines variable-group variable create --group-id 1 --name testvariable --value True --org https://dev.azure.com/matthewboler/ --project AzureDeploy
