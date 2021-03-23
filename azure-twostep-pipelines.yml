@@ -75,6 +75,6 @@ steps:
 - script: az devops configure --defaults organization=https://dev.azure.com/matthewboler/ project="AzureDeploy" --use-git-aliases true
   displayName: 'Set default Azure DevOps organization and project'
 
-- script: az pipelines variable-group variable create --group-id 0 --name testvariable --value True --org https://dev.azure.com/matthewboler/ --project AzureDeploy
+- script: az pipelines variable-group variable create --group-id 1 --name testvariable --value True --org https://dev.azure.com/matthewboler/ --project AzureDeploy
   displayName: 'Create a variable'
           
