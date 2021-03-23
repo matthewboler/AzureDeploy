@@ -49,7 +49,7 @@ steps:
       #az ad app permission grant --id b993ce7b-96cf-4639-9a24-1a4d0810de75 --api 00000002-0000-0000-c000-000000000000
 
       Write-Host "App ID: $appId"
-    addSpnToEnvironment: true
+    # addSpnToEnvironment: true
 
 - task: AzureCLI@2
   inputs:
@@ -77,4 +77,5 @@ steps:
 
 - script: az pipelines variable-group variable create --group-id 1 --name testvariable --value True --org https://dev.azure.com/matthewboler/ --project AzureDeploy
   displayName: 'Create a variable'
-  # This only works if the Project Build Service has admin on the Variable group
+  # This only works if the Project Build Service has admin on the Variable group and fails
+  # once the variable already exists
