@@ -47,35 +47,19 @@ steps:
       #az ad app permission grant --id $appId --api 00000002-0000-0000-c000-000000000000
       #az ad app permission admin-consent --id $appId
       #az ad app permission grant --id b993ce7b-96cf-4639-9a24-1a4d0810de75 --api 00000002-0000-0000-c000-000000000000
-
       Write-Host "App ID: $appId"
-    # addSpnToEnvironment: true
-
-- task: AzureCLI@2
-  inputs:
-    azureSubscription: 'AzureDeployConn'
-    scriptType: 'ps'
-    scriptLocation: 'inlineScript'
-    inlineScript: |
-      $appId = (az ad app create --display-name AuthTest --homepage https://umb20210319webapp.azurewebsites.net --identifier-uris https://umb20210319webapp.azurewebsites.net --reply-urls https://umb20210319webapp.azurewebsites.net/.auth/login/aad/callback --query 'appId' -o tsv)
+      # addSpnToEnvironment: true
+      #$appId = (az ad app create --display-name AuthTest --homepage https://umb20210319webapp.azurewebsites.net --identifier-uris https://umb20210319webapp.azurewebsites.net --reply-urls https://umb20210319webapp.azurewebsites.net/.auth/login/aad/callback --query 'appId' -o tsv)
       az login -u $(consentUser) -p $(consentPwd) --allow-no-subscriptions
       az ad app permission admin-consent --id $appId
       #az ad app permission grant --id b993ce7b-96cf-4639-9a24-1a4d0810de75 --api 00000002-0000-0000-c000-000000000000
-
-      Write-Host "App ID: $appId"
-
-- script: az extension add -n azure-devops
-  displayName: 'Install Azure DevOps Extension'
-
-- script: echo $(System.AccessToken) | az devops login
-  env:
-    AZURE_DEVOPS_CLI_PAT: $(System.AccessToken)
-  displayName: 'Login Azure DevOps Extension'
-
-- script: az devops configure --defaults organization=https://dev.azure.com/matthewboler/ project="AzureDeploy" --use-git-aliases true
-  displayName: 'Set default Azure DevOps organization and project'
-
-- script: az pipelines variable-group variable create --group-id 1 --name testvariable --value True --org https://dev.azure.com/matthewboler/ --project AzureDeploy
-  displayName: 'Create a variable'
+      #Write-Host "App ID: $appId"
+      az extension add -n azure-devops
+      echo $(System.AccessToken) | az devops login
+      az devops configure --defaults organization=https://dev.azure.com/matthewboler/ project="AzureDeploy" --use-git-aliases true
+      az pipelines variable-group variable create --group-id 1 --name testvariable --value True --org https://dev.azure.com/matthewboler/ --project AzureDeploy
   # This only works if the Project Build Service has admin on the Variable group and fails
   # once the variable already exists
+  env:
+    AZURE_DEVOPS_CLI_PAT: $(System.AccessToken)
+  
