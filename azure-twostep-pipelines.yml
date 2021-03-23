@@ -64,17 +64,22 @@ steps:
 
       Write-Host "App ID: $appId"
 
+- script: az extension add -n azure-devops
+  displayName: 'Install Azure DevOps Extension'
+
+- script: echo $(System.AccessToken) | az devops login
+  env:
+    AZURE_DEVOPS_CLI_PAT: $(System.AccessToken)
+  displayName: 'Login Azure DevOps Extension'
+
+- script: az devops configure --defaults organization=https://dev.azure.com/matthewboler/ project="AzureDeploy" --use-git-aliases true
+  displayName: 'Set default Azure DevOps organization and project'
+          
 - task: AzureCLI@2
   inputs:
     azureSubscription: 'AzureDeployConn'
     scriptType: 'ps'
     scriptLocation: 'inlineScript'
     inlineScript: |
-          az config set extension.use_dynamic_install=yes_without_prompt
-          az login -u $(consentUser) -p $(consentPwd) --allow-no-subscriptions
           az pipelines variable-group variable create --group-id 0 --name testvariable --value True --org https://dev.azure.com/matthewboler/ --project AzureDeploy
-          az pipelines variable-group variable create --group-id 1 --name testvariable --value True --org https://dev.azure.com/matthewboler/ --project AzureDeploy
-          az pipelines variable-group variable create --group-id 2 --name testvariable --value True --org https://dev.azure.com/matthewboler/ --project AzureDeploy
-          az pipelines variable-group variable create --group-id 3 --name testvariable --value True --org https://dev.azure.com/matthewboler/ --project AzureDeploy
-
           
