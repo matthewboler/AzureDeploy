@@ -71,6 +71,26 @@
       }
     },
     {
+      "name": "linkedTemplateFunction",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2020-10-01",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[concat(parameters('storageName'),'CreateWebApp\\functionapp.json',parameters('storageSAS'))]",
+                    "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "environment": {
+            "value": "[parameters('environment')]"
+          },
+          "serviceNameAbbreviation": {
+            "value": "mb"
+          }
+        }
+      }
+    },    
+    {
       "type": "Microsoft.Web/serverfarms",
       "apiVersion": "2020-09-01",
       "name": "[variables('appServicePlanName')]",
