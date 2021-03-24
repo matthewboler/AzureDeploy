@@ -14,7 +14,7 @@ steps:
     SourcePath: 'CreateWebApp'
     azureSubscription: 'AzureDeployConn'
     Destination: 'AzureBlob'
-    storage: 'mb20210319a4pg7nidrkd6fm'
+    storage: 'mbarmstorage'
     ContainerName: 'projecttemplates'
   name: AzureFileCopy
 
