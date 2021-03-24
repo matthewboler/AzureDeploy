@@ -4,7 +4,7 @@
   "parameters": {
     "projectName": {
       "type": "string",
-      "defaultValue": "mb20210319",
+      "defaultValue": "mb20210325",
       "minLength": 3,
       "maxLength": 11,
       "metadata": {
@@ -81,6 +81,9 @@
                     "contentVersion": "1.0.0.0"
         },
         "parameters": {
+          "storageAccountName": {
+            "value": "[variables('storageAccountName')]"
+          },
           "environment": {
             "value": "[parameters('environment')]"
           },

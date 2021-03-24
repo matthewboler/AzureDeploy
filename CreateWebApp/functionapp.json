@@ -2,6 +2,12 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
+    "storageAccountName": {
+      "type": "string",
+      "metadata": {
+        "description": "Specify the storage account name."
+      }
+    },
     "environment": {
       "type": "string",
       "allowedValues": [ "d", "t", "u", "s", "p" ],
@@ -20,7 +26,8 @@
     "location": "[resourceGroup().location]",
     "appServiceName": "[concat(parameters('environment'), '-ause-vcs-ps-fn-imps-', parameters('serviceNameAbbreviation'), '-01')]",
     "appServicePlanName": "[concat(parameters('environment'), '-ause-vcs-ps-asp-f-imps-01')]",
-    "storageAccountName": "[concat(parameters('environment'), 'ausevcssastdlrsimpsdata')]",
+    // "storageAccountName": "[concat(parameters('environment'), 'ausevcssastdlrsimpsdata')]",
+    "storageAccountName": "[parameters('storageAccountName')]",
     "storageAccountid": "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]",
     // "storageAccountConnectionString": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountName'), ';AccountKey=', listKeys(variables('storageAccountid'),'2019-06-01').keys[0].value, ';EndpointSuffix=core.windows.net')]",
     "appInsightsName": "[concat(parameters('environment'), '-ause-vcs-ais-imps-01')]"
